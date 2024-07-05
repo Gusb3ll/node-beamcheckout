@@ -16,6 +16,7 @@ export class BeamCheckout {
   private merchantId: string
   private apiKey: string
   
+  /** Create payment */
   async createPayment(args: CreatePaymentArgs): Promise<CreatePaymentResponse> {
     const { data } = await axios.post<CreatePaymentResponse>(
       `https://partner-api.beamdata.co/purchases/${this.merchantId}`,
@@ -26,6 +27,7 @@ export class BeamCheckout {
     return data
   }
 
+  /** Get payment */
   async getPayment(purchaseId: string): Promise<GetPaymentResponse> {
     const { data } = await axios.get<GetPaymentResponse>(
       `https://partner-api.beamdata.co/purchases/${this.merchantId}/${purchaseId}/detail`,
@@ -35,6 +37,10 @@ export class BeamCheckout {
     return data
   }
 
+  /** 
+   * Disable payment 
+   * @param {string} purchaseId - The purchase ID
+   * */
   async disablePayment(purchaseId: string): Promise<DisablePaymentResponse> { 
     const { data } = await axios.post<DisablePaymentResponse>(
       `https://partner-api.beamdata.co/purchases/${this.merchantId}/${purchaseId}/disable`,
