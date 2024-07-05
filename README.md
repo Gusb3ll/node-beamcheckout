@@ -11,7 +11,7 @@ pnpm add node-beamcheckout
 ## Example
 
 ```typescript
-import { BeamCheckout } from 'node-beamcheckout'
+import BeamCheckout from 'node-beamcheckout'
 
 const beam = new BeamCheckout("[YOUR_MERCHANT_ID]", "[YOUR_API_KEY]")
 
