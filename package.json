@@ -1,0 +1,45 @@
+{
+  "name": "node-beamcheckout",
+  "version": "1.0.0",
+  "description": "Package for Beam Checkout",
+  "author": {
+    "name": "Gusb3ll",
+    "url": "https://github.com/gusb3ll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gusb3ll/node-beamcheckout"
+  },
+  "exports": {
+    "node": "./dist/cjs/index.js",
+    "require": "./dist/cjs/index.js",
+    "import": "./dist/index.js",
+    "default": "./dist/cjs/index.js"
+  },
+  "types": "./src/index.ts",
+  "url": "https://github.com/gusb3ll/node-beamcheckout",
+  "keywords": [
+    "node-beamcheckout",
+    "Beam",
+    "Checkout",
+    "Beam Checkout"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node example/index.ts",
+    "build": "rm -rf dist && tsc --project tsconfig.esm.json && tsc --project tsconfig.cjs.json",
+    "release": "npm run build && npm publish --access public",
+    "lint": "eslint src --ext .ts"
+  },
+  "dependencies": {
+    "axios": "1.7.2"
+  },
+  "devDependencies": {
+    "@types/node": "20.14.9",
+    "@typescript-eslint/eslint-plugin": "7.15.0",
+    "@typescript-eslint/parser": "7.15.0",
+    "eslint": "8.57.0",
+    "ts-node": "10.9.2",
+    "typescript": "5.5.3"
+  }
+}

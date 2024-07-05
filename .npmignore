@@ -1,0 +1,9 @@
+.git
+.gitignore
+node_modules
+pnpm-lock.yaml
+example
+.eslintrc.js
+tsconfig.json
+tsconfig.cjs.json
+tsconfig.esm.json
