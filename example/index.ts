@@ -9,6 +9,7 @@ const main = async () => {
       totalAmount: 100,
       merchantReferenceId: 'ORDER-001'
     },
+    supportedPaymentMethods: ['creditCard', 'qrThb'],
     redirectUrl: 'https://github.com/gusb3ll'
   })
 

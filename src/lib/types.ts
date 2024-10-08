@@ -1,11 +1,4 @@
-enum PaymentMethods {
-  creditCard = 'creditCard',
-  internetBanking = 'internetBanking',
-  eWallet = 'eWallet',
-  installmentsCc = 'installmentsCc',
-  bnpl = 'bnpl',
-  qrThb = 'qrThb'
-}
+export type PaymentMethods = 'creditCard' | 'internetBanking' | 'eWallet' | 'installmentsCc' | 'bnpl' | 'qrThb'
 
 export type CreatePaymentArgs = {
   channel?: string
