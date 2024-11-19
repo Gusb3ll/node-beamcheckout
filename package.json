@@ -1,6 +1,6 @@
 {
   "name": "node-beamcheckout",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Package for Beam Checkout",
   "author": {
     "name": "Gusb3ll",
@@ -32,7 +32,7 @@
     "lint": "eslint src --ext .ts"
   },
   "dependencies": {
-    "axios": "1.7.2"
+    "axios": "1.7.7"
   },
   "devDependencies": {
     "@types/node": "20.14.9",
