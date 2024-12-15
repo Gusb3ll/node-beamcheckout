@@ -125,3 +125,31 @@ export type DisablePaymentResponse = {
   code: number
   message: string
 }
+
+export type BeamWebhook = {
+  merchantId: string
+  purchaseId: string
+  state: string
+  customer: {
+    billingAddress: {
+      fullStreetAddress: string
+      city: string
+      country: string
+      postCode: string
+    }
+    shippingAddress: {
+      fullStreetAddress: string
+      city: string
+      country: string
+      postCode: string
+    }
+    contactNumber: string
+    email: string
+    title: string
+    firstName: string
+    lastName: string
+    dateOfBirth: string
+  }
+  created: string
+  lastUpdated: string
+}

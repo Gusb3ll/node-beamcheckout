@@ -1,4 +1,4 @@
-import BeamCheckout from './../src'
+import BeamCheckout from '../src'
 
 const main = async () => {
   const beam = new BeamCheckout("[YOUR_MERCHANT_ID]", "[YOUR_API_KEY]")
