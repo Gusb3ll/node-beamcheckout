@@ -44,6 +44,7 @@ export class BeamCheckout {
   async disablePayment(purchaseId: string): Promise<DisablePaymentResponse> { 
     const { data } = await axios.post<DisablePaymentResponse>(
       `https://partner-api.beamdata.co/purchases/${this.merchantId}/${purchaseId}/disable`,
+      {},
       { auth: { username: this.merchantId, password: this.apiKey } },
     )
 
