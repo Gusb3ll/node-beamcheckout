@@ -1,5 +1,3 @@
-import axios from "axios"
-
 import {
   CreatePaymentArgs,
   CreatePaymentResponse,
@@ -15,26 +13,33 @@ export class BeamCheckout {
 
   private merchantId: string
   private apiKey: string
+
+  private getHeaders() {
+    return {
+      'Authorization': `Basic ${Buffer.from(`${this.merchantId}:${this.apiKey}`).toString('base64')}`,
+      'Content-Type': 'application/json'
+    }
+  }
   
   /** Create payment */
   async createPayment(args: CreatePaymentArgs): Promise<CreatePaymentResponse> {
-    const { data } = await axios.post<CreatePaymentResponse>(
-      `https://partner-api.beamdata.co/purchases/${this.merchantId}`,
-      args,
-      { auth: { username: this.merchantId, password: this.apiKey } }
-    )
+    const res = await fetch(`https://partner-api.beamdata.co/purchases/${this.merchantId}`, {
+      method: 'POST',
+      headers: this.getHeaders(),
+      body: JSON.stringify(args),
+    })
 
-    return data
+    return await res.json()
   }
 
   /** Get payment */
   async getPayment(purchaseId: string): Promise<GetPaymentResponse> {
-    const { data } = await axios.get<GetPaymentResponse>(
-      `https://partner-api.beamdata.co/purchases/${this.merchantId}/${purchaseId}/detail`,
-      { auth: { username: this.merchantId, password: this.apiKey } },
-    )
+    const res = await fetch(`https://partner-api.beamdata.co/purchases/${this.merchantId}/${purchaseId}/detail`, {
+      method: 'GET',
+      headers: this.getHeaders(),
+    })
 
-    return data
+    return await res.json()
   }
 
   /** 
@@ -42,13 +47,12 @@ export class BeamCheckout {
    * @param {string} purchaseId - The purchase ID
    * */
   async disablePayment(purchaseId: string): Promise<DisablePaymentResponse> { 
-    const { data } = await axios.post<DisablePaymentResponse>(
-      `https://partner-api.beamdata.co/purchases/${this.merchantId}/${purchaseId}/disable`,
-      {},
-      { auth: { username: this.merchantId, password: this.apiKey } },
-    )
+    const res = await fetch(`https://partner-api.beamdata.co/purchases/${this.merchantId}/${purchaseId}/disable`, {
+      method: 'POST',
+      headers: this.getHeaders(),
+    })
 
-    return data
+    return await res.json()
   }
 
   //TODO Refunds
