@@ -23,7 +23,7 @@ export class BeamCheckout {
   
   /** Create payment */
   async createPayment(args: CreatePaymentArgs): Promise<CreatePaymentResponse> {
-    const res = await fetch(`https://partner-api.beamdata.co/purchases/${this.merchantId}`, {
+    const res = await fetch(`https://api.beamcheckout.com/purchases/${this.merchantId}`, {
       method: 'POST',
       headers: this.getHeaders(),
       body: JSON.stringify(args),
@@ -34,7 +34,7 @@ export class BeamCheckout {
 
   /** Get payment */
   async getPayment(purchaseId: string): Promise<GetPaymentResponse> {
-    const res = await fetch(`https://partner-api.beamdata.co/purchases/${this.merchantId}/${purchaseId}/detail`, {
+    const res = await fetch(`https://api.beamcheckout.com/purchases/${this.merchantId}/${purchaseId}/detail`, {
       method: 'GET',
       headers: this.getHeaders(),
     })
@@ -47,7 +47,7 @@ export class BeamCheckout {
    * @param {string} purchaseId - The purchase ID
    * */
   async disablePayment(purchaseId: string): Promise<DisablePaymentResponse> { 
-    const res = await fetch(`https://partner-api.beamdata.co/purchases/${this.merchantId}/${purchaseId}/disable`, {
+    const res = await fetch(`https://api.beamcheckout.com/purchases/${this.merchantId}/${purchaseId}/disable`, {
       method: 'POST',
       headers: this.getHeaders(),
     })
