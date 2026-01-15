@@ -18,7 +18,7 @@ import {
   SuccessfulTransactionsResponse,
 } from "./types";
 
-export class BeamCheckoutV1 {
+export class BeamCheckout {
   constructor(merchantId: string, apiKey: string, sandbox: boolean = false) {
     this.merchantId = merchantId;
     this.apiKey = apiKey;
