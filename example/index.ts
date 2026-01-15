@@ -1,11 +1,11 @@
-import BeamCheckout, { CurrencyCode } from "../src";
+import BeamCheckout, { CurrencyCode } from '../src'
 
 const main = async () => {
-  const beam = new BeamCheckout("[YOUR_MERCHANT_ID]", "[YOUR_API_KEY]");
+  const beam = new BeamCheckout('[YOUR_MERCHANT_ID]', '[YOUR_API_KEY]')
 
   const paymentInfo = await beam.createPayment({
     order: {
-      referenceId: "ORDER-001",
+      referenceId: 'ORDER-001',
       netAmount: 10000,
       currency: CurrencyCode.THB,
     },
@@ -20,12 +20,12 @@ const main = async () => {
         isEnabled: true,
       },
     },
-    redirectUrl: "https://github.com/gusb3ll",
+    redirectUrl: 'https://github.com/gusb3ll',
     collectPhoneNumber: false,
     collectDeliveryAddress: false,
-  });
+  })
 
-  console.log(paymentInfo);
+  console.log(paymentInfo)
 
   // const paymentDetails = await beam.getPayment("paymentLinkId");
   // console.log(paymentDetails);
@@ -87,6 +87,6 @@ const main = async () => {
   //   "boltIntentId"
   // );
   // console.log(cancelBolt);
-};
+}
 
-main();
+main()

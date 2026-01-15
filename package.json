@@ -30,10 +30,12 @@
   "scripts": {
     "dev": "tsx example/index.ts",
     "build": "rm -rf dist && tsc --project tsconfig.esm.json && tsc --project tsconfig.cjs.json",
-    "release": "npm run build && npm publish --access public"
+    "release": "npm run build && npm publish --access public",
+    "fmt": "prettier --write ."
   },
   "devDependencies": {
     "@types/node": "24.0.4",
+    "prettier": "3.8.0",
     "tsx": "4.21.0",
     "typescript": "5.9.3"
   },
@@ -42,5 +44,12 @@
   },
   "pnpm": {
     "neverBuiltDependencies": []
+  },
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 80,
+    "tabWidth": 2,
+    "semi": false,
+    "arrowParens": "avoid"
   }
 }

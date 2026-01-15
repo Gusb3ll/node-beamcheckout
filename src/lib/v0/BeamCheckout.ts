@@ -3,22 +3,22 @@ import {
   CreatePaymentResponse,
   DisablePaymentResponse,
   GetPaymentResponse,
-} from "./types";
+} from './types'
 
 export class BeamCheckout {
   constructor(merchantId: string, apiKey: string) {
-    this.merchantId = merchantId;
-    this.apiKey = apiKey;
+    this.merchantId = merchantId
+    this.apiKey = apiKey
   }
 
-  private merchantId: string;
-  private apiKey: string;
+  private merchantId: string
+  private apiKey: string
 
   private getHeaders() {
     return {
-      Authorization: `Basic ${Buffer.from(`${this.merchantId}:${this.apiKey}`).toString("base64")}`,
-      "Content-Type": "application/json",
-    };
+      Authorization: `Basic ${Buffer.from(`${this.merchantId}:${this.apiKey}`).toString('base64')}`,
+      'Content-Type': 'application/json',
+    }
   }
 
   /** Create payment */
@@ -26,13 +26,13 @@ export class BeamCheckout {
     const res = await fetch(
       `https://api.beamcheckout.com/purchases/${this.merchantId}`,
       {
-        method: "POST",
+        method: 'POST',
         headers: this.getHeaders(),
         body: JSON.stringify(args),
       },
-    );
+    )
 
-    return await res.json();
+    return await res.json()
   }
 
   /** Get payment */
@@ -40,12 +40,12 @@ export class BeamCheckout {
     const res = await fetch(
       `https://api.beamcheckout.com/purchases/${this.merchantId}/${purchaseId}/detail`,
       {
-        method: "GET",
+        method: 'GET',
         headers: this.getHeaders(),
       },
-    );
+    )
 
-    return await res.json();
+    return await res.json()
   }
 
   /**
@@ -56,12 +56,12 @@ export class BeamCheckout {
     const res = await fetch(
       `https://api.beamcheckout.com/purchases/${this.merchantId}/${purchaseId}/disable`,
       {
-        method: "POST",
+        method: 'POST',
         headers: this.getHeaders(),
       },
-    );
+    )
 
-    return await res.json();
+    return await res.json()
   }
 
   //TODO Refunds

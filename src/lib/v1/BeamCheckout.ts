@@ -16,28 +16,28 @@ import {
   ListTransactionsResponse,
   RefundPaymentResponse,
   SuccessfulTransactionsResponse,
-} from "./types";
+} from './types'
 
 export class BeamCheckout {
   constructor(merchantId: string, apiKey: string, sandbox: boolean = false) {
-    this.merchantId = merchantId;
-    this.apiKey = apiKey;
+    this.merchantId = merchantId
+    this.apiKey = apiKey
     this.baseUrl = sandbox
-      ? "https://playground.api.beamcheckout.com/api/v1"
-      : "https://api.beamcheckout.com/api/v1";
+      ? 'https://playground.api.beamcheckout.com/api/v1'
+      : 'https://api.beamcheckout.com/api/v1'
   }
 
-  private merchantId: string;
-  private apiKey: string;
-  private baseUrl: string;
+  private merchantId: string
+  private apiKey: string
+  private baseUrl: string
 
   private getHeaders() {
     return {
       Authorization: `Basic ${Buffer.from(
         `${this.merchantId}:${this.apiKey}`,
-      ).toString("base64")}`,
-      "Content-Type": "application/json",
-    };
+      ).toString('base64')}`,
+      'Content-Type': 'application/json',
+    }
   }
 
   /** Create payment
@@ -45,14 +45,14 @@ export class BeamCheckout {
    * @returns {Promise<CreatePaymentResponse>} - The created payment response
    */
   async createPayment(args: CreatePaymentArgs): Promise<CreatePaymentResponse> {
-    console.log(`${this.baseUrl}/payment-links`, JSON.stringify(args));
+    console.log(`${this.baseUrl}/payment-links`, JSON.stringify(args))
     const res = await fetch(`${this.baseUrl}/payment-links`, {
-      method: "POST",
+      method: 'POST',
       headers: this.getHeaders(),
       body: JSON.stringify(args),
-    });
+    })
 
-    return await res.json();
+    return await res.json()
   }
 
   /** Get payment link
@@ -61,11 +61,11 @@ export class BeamCheckout {
    */
   async getPayment(paymentLinkId: string): Promise<GetPaymentResponse> {
     const res = await fetch(`${this.baseUrl}/payment-links/${paymentLinkId}`, {
-      method: "GET",
+      method: 'GET',
       headers: this.getHeaders(),
-    });
+    })
 
-    return await res.json();
+    return await res.json()
   }
 
   /**
@@ -77,12 +77,12 @@ export class BeamCheckout {
     const res = await fetch(
       `${this.baseUrl}/payment-links/${paymentLinkId}/disable`,
       {
-        method: "PATCH",
+        method: 'PATCH',
         headers: this.getHeaders(),
       },
-    );
+    )
 
-    return await res.json();
+    return await res.json()
   }
 
   /**
@@ -98,16 +98,16 @@ export class BeamCheckout {
     reason?: string,
   ): Promise<RefundPaymentResponse> {
     const res = await fetch(`${this.baseUrl}/refunds`, {
-      method: "POST",
+      method: 'POST',
       headers: this.getHeaders(),
       body: JSON.stringify({
         amount: amount,
         chargeId: chargeId,
         reason: reason,
       }),
-    });
+    })
 
-    return await res.json();
+    return await res.json()
   }
 
   /**
@@ -117,11 +117,11 @@ export class BeamCheckout {
    */
   async getRefund(refundId: string): Promise<GetRefundResponse> {
     const res = await fetch(`${this.baseUrl}/refunds/${refundId}`, {
-      method: "GET",
+      method: 'GET',
       headers: this.getHeaders(),
-    });
+    })
 
-    return await res.json();
+    return await res.json()
   }
 
   /**
@@ -139,12 +139,12 @@ export class BeamCheckout {
     const res = await fetch(
       `${this.baseUrl}/transactions?limit=${limit}&offset=${offset}&referenceId=${referenceId}`,
       {
-        method: "GET",
+        method: 'GET',
         headers: this.getHeaders(),
       },
-    );
+    )
 
-    return await res.json();
+    return await res.json()
   }
 
   /**
@@ -156,11 +156,11 @@ export class BeamCheckout {
     transactionId: string,
   ): Promise<SuccessfulTransactionsResponse> {
     const res = await fetch(`${this.baseUrl}/transactions/${transactionId}`, {
-      method: "GET",
+      method: 'GET',
       headers: this.getHeaders(),
-    });
+    })
 
-    return await res.json();
+    return await res.json()
   }
 
   /**
@@ -172,12 +172,12 @@ export class BeamCheckout {
     args: CreateChargePaymentArgs,
   ): Promise<CreateChargePaymentResponse> {
     const res = await fetch(`${this.baseUrl}/charges`, {
-      method: "POST",
+      method: 'POST',
       headers: this.getHeaders(),
       body: JSON.stringify(args),
-    });
+    })
 
-    return await res.json();
+    return await res.json()
   }
 
   /**
@@ -187,11 +187,11 @@ export class BeamCheckout {
    */
   async getChargePayment(chargeId: string): Promise<GetChargePaymentResponse> {
     const res = await fetch(`${this.baseUrl}/charges/${chargeId}`, {
-      method: "GET",
+      method: 'GET',
       headers: this.getHeaders(),
-    });
+    })
 
-    return await res.json();
+    return await res.json()
   }
 
   /**
@@ -203,14 +203,14 @@ export class BeamCheckout {
     pairingCode: string,
   ): Promise<CreateBoltConnectionResponse> {
     const res = await fetch(`${this.baseUrl}/bolt-connections`, {
-      method: "POST",
+      method: 'POST',
       headers: this.getHeaders(),
       body: JSON.stringify({
         pairingCode: pairingCode,
       }),
-    });
+    })
 
-    return await res.json();
+    return await res.json()
   }
 
   /**
@@ -224,12 +224,12 @@ export class BeamCheckout {
     const res = await fetch(
       `${this.baseUrl}/bolt-connections/${boltConnectionId}`,
       {
-        method: "DELETE",
+        method: 'DELETE',
         headers: this.getHeaders(),
       },
-    );
+    )
 
-    return await res.json();
+    return await res.json()
   }
 
   /**
@@ -243,12 +243,12 @@ export class BeamCheckout {
     const res = await fetch(
       `${this.baseUrl}/bolt-connections/${boltConnectionId}`,
       {
-        method: "GET",
+        method: 'GET',
         headers: this.getHeaders(),
       },
-    );
+    )
 
-    return await res.json();
+    return await res.json()
   }
 
   /**
@@ -260,12 +260,12 @@ export class BeamCheckout {
     args: CreateBoltIntentArgs,
   ): Promise<CreateBoltIntentResponse> {
     const res = await fetch(`${this.baseUrl}/bolt-intents`, {
-      method: "POST",
+      method: 'POST',
       headers: this.getHeaders(),
       body: JSON.stringify(args),
-    });
+    })
 
-    return await res.json();
+    return await res.json()
   }
 
   /**
@@ -279,11 +279,11 @@ export class BeamCheckout {
     const res = await fetch(
       `${this.baseUrl}/bolt-intents/${boltIntentId}/cancel`,
       {
-        method: "PATCH",
+        method: 'PATCH',
         headers: this.getHeaders(),
       },
-    );
+    )
 
-    return await res.json();
+    return await res.json()
   }
 }
