@@ -29,7 +29,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node example/index.ts",
+    "dev:v1": "ts-node example/v1.ts",
     "build": "rm -rf dist && tsc --project tsconfig.esm.json && tsc --project tsconfig.cjs.json",
+    "build:win": "tsc --project tsconfig.esm.json && tsc --project tsconfig.cjs.json",
     "release": "npm run build && npm publish --access public"
   },
   "devDependencies": {

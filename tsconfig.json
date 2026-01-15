@@ -6,8 +6,7 @@
       "DOM",
       "ScriptHost"
     ],
-    "module": "CommonJS",
-    "moduleResolution": "node",
+    "module": "commonjs",
     "declaration": true,
     "noEmit": true,
     "esModuleInterop": true,
