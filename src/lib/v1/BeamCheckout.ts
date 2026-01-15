@@ -22,7 +22,6 @@ export class BeamCheckoutV1 {
   constructor(merchantId: string, apiKey: string, sandbox: boolean = false) {
     this.merchantId = merchantId;
     this.apiKey = apiKey;
-    this.sandbox = sandbox;
     this.baseUrl = sandbox
       ? "https://playground.api.beamcheckout.com/api/v1"
       : "https://api.beamcheckout.com/api/v1";
@@ -31,7 +30,6 @@ export class BeamCheckoutV1 {
   private merchantId: string;
   private apiKey: string;
   private baseUrl: string;
-  private sandbox: boolean;
 
   private getHeaders() {
     return {
