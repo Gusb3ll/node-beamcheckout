@@ -36,7 +36,7 @@ export class BeamCheckoutV1 {
   private getHeaders() {
     return {
       Authorization: `Basic ${Buffer.from(
-        `${this.merchantId}:${this.apiKey}`
+        `${this.merchantId}:${this.apiKey}`,
       ).toString("base64")}`,
       "Content-Type": "application/json",
     };
@@ -81,7 +81,7 @@ export class BeamCheckoutV1 {
       {
         method: "PATCH",
         headers: this.getHeaders(),
-      }
+      },
     );
 
     return await res.json();
@@ -97,7 +97,7 @@ export class BeamCheckoutV1 {
   async refundPayment(
     chargeId: string,
     amount?: number,
-    reason?: string
+    reason?: string,
   ): Promise<RefundPaymentResponse> {
     const res = await fetch(`${this.baseUrl}/refunds`, {
       method: "POST",
@@ -136,14 +136,14 @@ export class BeamCheckoutV1 {
   async listTransactions(
     referenceId?: string,
     limit: number = 10,
-    offset: number = 0
+    offset: number = 0,
   ): Promise<ListTransactionsResponse> {
     const res = await fetch(
       `${this.baseUrl}/transactions?limit=${limit}&offset=${offset}&referenceId=${referenceId}`,
       {
         method: "GET",
         headers: this.getHeaders(),
-      }
+      },
     );
 
     return await res.json();
@@ -155,7 +155,7 @@ export class BeamCheckoutV1 {
    * @returns {Promise<SuccessfulTransactionsResponse>} - The successful transactions details
    */
   async getSuccessfulTransactions(
-    transactionId: string
+    transactionId: string,
   ): Promise<SuccessfulTransactionsResponse> {
     const res = await fetch(`${this.baseUrl}/transactions/${transactionId}`, {
       method: "GET",
@@ -171,7 +171,7 @@ export class BeamCheckoutV1 {
    * @returns {Promise<CreateChargePaymentResponse>} - The created charge payment response
    */
   async createChargePayment(
-    args: CreateChargePaymentArgs
+    args: CreateChargePaymentArgs,
   ): Promise<CreateChargePaymentResponse> {
     const res = await fetch(`${this.baseUrl}/charges`, {
       method: "POST",
@@ -202,7 +202,7 @@ export class BeamCheckoutV1 {
    * @returns {Promise<CreateBoltConnectionResponse>} - Created bolt connection response
    */
   async createBoltConnection(
-    pairingCode: string
+    pairingCode: string,
   ): Promise<CreateBoltConnectionResponse> {
     const res = await fetch(`${this.baseUrl}/bolt-connections`, {
       method: "POST",
@@ -221,14 +221,14 @@ export class BeamCheckoutV1 {
    * @returns { Promise<DeleteBoltConnectionResponse> } - The deleted bolt connection response
    */
   async deleteBoltConnection(
-    boltConnectionId: string
+    boltConnectionId: string,
   ): Promise<DeleteBoltConnectionResponse> {
     const res = await fetch(
       `${this.baseUrl}/bolt-connections/${boltConnectionId}`,
       {
         method: "DELETE",
         headers: this.getHeaders(),
-      }
+      },
     );
 
     return await res.json();
@@ -240,14 +240,14 @@ export class BeamCheckoutV1 {
    * @returns { Promise<GetBoltConnectionResponse> } - Get bolt connection response
    */
   async getBoltConnection(
-    boltConnectionId: string
+    boltConnectionId: string,
   ): Promise<GetBoltConnectionResponse> {
     const res = await fetch(
       `${this.baseUrl}/bolt-connections/${boltConnectionId}`,
       {
         method: "GET",
         headers: this.getHeaders(),
-      }
+      },
     );
 
     return await res.json();
@@ -259,7 +259,7 @@ export class BeamCheckoutV1 {
    * @returns {Promise<CreateBoltIntentResponse>} - Created bolt payment response
    */
   async createBoltIntent(
-    args: CreateBoltIntentArgs
+    args: CreateBoltIntentArgs,
   ): Promise<CreateBoltIntentResponse> {
     const res = await fetch(`${this.baseUrl}/bolt-intents`, {
       method: "POST",
@@ -276,14 +276,14 @@ export class BeamCheckoutV1 {
    * @returns {Promise<CancelBoltIntentResponse>} - Cancelled bolt intent response
    */
   async cancelBoltIntent(
-    boltIntentId: string
+    boltIntentId: string,
   ): Promise<CancelBoltIntentResponse> {
     const res = await fetch(
       `${this.baseUrl}/bolt-intents/${boltIntentId}/cancel`,
       {
         method: "PATCH",
         headers: this.getHeaders(),
-      }
+      },
     );
 
     return await res.json();

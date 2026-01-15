@@ -11,18 +11,18 @@ pnpm add node-beamcheckout
 ## Example
 
 ```typescript
-import BeamCheckout from 'node-beamcheckout'
+import BeamCheckout from "node-beamcheckout";
 
-const beam = new BeamCheckout("[YOUR_MERCHANT_ID]", "[YOUR_API_KEY]")
+const beam = new BeamCheckout("[YOUR_MERCHANT_ID]", "[YOUR_API_KEY]");
 
 const paymentInfo = await beam.createPayment({
   order: {
     netAmount: 100,
     totalAmount: 100,
-    merchantReferenceId: 'ORDER-001'
+    merchantReferenceId: "ORDER-001",
   },
-  redirectUrl: 'https://github.com/gusb3ll'
-})
+  redirectUrl: "https://github.com/gusb3ll",
+});
 
-console.log(paymentInfo)
+console.log(paymentInfo);
 ```
