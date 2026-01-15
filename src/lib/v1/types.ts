@@ -534,3 +534,62 @@ export type ChargeSuccessWebhook = {
   createdAt: string
   updatedAt: string
 }
+
+export type PaymentLinkPaidWebhook = {
+  paymentLinkId: string
+  merchantId: string
+  url: string
+  status: 'PAID'
+  order: {
+    netAmount: number
+    currency: CurrencyCode
+    description: string
+    internalNote: string
+    referenceId: string
+    orderItems: {
+      description: string
+      imageUrl: string
+      itemName: string
+      price: number
+      productId: string
+      quantity: number
+      sku: string
+    }[]
+  }
+  linkSettings: {
+    buyNowPayLater: {
+      isEnabled: boolean
+    }
+    card: {
+      isEnabled: boolean
+    }
+    cardInstallments: {
+      installments3m: {
+        isEnabled: boolean
+      }
+      installments4m: {
+        isEnabled: boolean
+      }
+      installments6m: {
+        isEnabled: boolean
+      }
+      installments10m: {
+        isEnabled: boolean
+      }
+    }
+    qrPromptPay: {
+      isEnabled: boolean
+    }
+    eWallets: {
+      isEnabled: boolean
+    }
+    mobileBanking: {
+      isEnabled: boolean
+    }
+  }
+  collectDeliveryAddress: boolean
+  collectPhoneNumber: boolean
+  redirectUrl: string
+  expiresAt: string
+  feeType: BeamFeeType
+}
